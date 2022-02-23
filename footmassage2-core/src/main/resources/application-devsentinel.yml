@@ -1,0 +1,28 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  cloud:
+    sentinel: # 对 sentinel 的配置
+      transport: # 连接 sentinel 客户端地址
+        dashboard: 192.168.0.41:8858
+        port: 8720 # 定义 sentinel 客户端跟微服务内部通讯端口
+        clientIp: 192.168.0.203
+      filter: #sentinel 对过滤器的支持
+        enabled: true
+      #配置sentinel规则持久化到nacos
+      datasource:
+        ds1: # 流控规则持久化到nacos
+          nacos:
+            server-addr: 192.168.0.41:8848
+            data-id: ${spring.application.name}.json
+            group-id: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow #rule-type 表示要配置什么类型 （例如：流控(flow) 还是 降级(degrade) 系统(system) 热点(paramflow) 授权(authority)）
+        ds2:
+          nacos: # 降级规则持久化到nacos
+            server-addr: 192.168.0.41:8848
+            data-id: ${spring.application.name}.degrade
+            group-id: DEFAULT_GROUP
+            data-type: json
+            rule-type: degrade
