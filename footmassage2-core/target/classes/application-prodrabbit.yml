@@ -1,0 +1,20 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+  rabbitmq:
+    host: 192.168.2.156
+    port: 5672
+    username: root
+    password: root
+    #集群的连接方式 并且 去掉 host 和 port 属性即可
+    #addresses: 192.168.0.41:5777,192.168.0.42:5777
+    publisher-returns: true #开启发送失败消息回退，而不是消息丢弃，防止消息丢失
+    publisher-confirm-type: correlated #开启
+    listener:
+      simple:
+        retry:
+          enabled: true # 开启消费者进行重试
+          max-attempts: 5 #重试次数
+          initial-interval: 1000ms #重试间隔时间
+        default-requeue-rejected: false #是否拒绝重新排列 (表示到达最大投递次数后 直接丢弃消息)

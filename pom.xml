@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>footmassage2personal</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>footmassage2-common</module>
+        <module>footmassage2-core</module>
+        <module>footmassage2-exposed</module>
+    </modules>
+
+    <properties>
+        <java.version>11</java.version>
+        <com.baomidou.version>3.4.2</com.baomidou.version>
+        <dynamic-datasource.version>3.3.2</dynamic-datasource.version>
+        <hikariCP.version>4.0.3</hikariCP.version>
+        <mysql-connector-java.version>8.0.11</mysql-connector-java.version>
+        <spring-session-data-redis.version>2.3.0.RELEASE</spring-session-data-redis.version>
+        <sdk.aliyun.oss>3.8.0</sdk.aliyun.oss>
+        <lombok.version>1.18.16</lombok.version>
+        <log4j.version>2.17.0</log4j.version>
+        <swagger.version>3.0.0</swagger.version>
+        <seetech.ordercentre.version>v1.2</seetech.ordercentre.version>
+        <seetech.util.version>1.7.6</seetech.util.version>
+        <seetech.rpcinterface.version>3.7</seetech.rpcinterface.version>
+        <spring-boot.version>2.6.3</spring-boot.version>
+        <xxlJobExposed.version>v1.0</xxlJobExposed.version>
+        <redis.jedis.version>3.1.0</redis.jedis.version>
+        <redis.springBootStart.version>2.3.3.RELEASE</redis.springBootStart.version>
+        <redis.redisson.version>3.13.2</redis.redisson.version>
+        <commons.version>1.15</commons.version>
+
+    </properties>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

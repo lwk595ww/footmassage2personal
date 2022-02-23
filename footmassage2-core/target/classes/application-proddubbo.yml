@@ -1,0 +1,17 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+dubbo:
+  scan:
+    base-packages: com.seetech.customerMarketing.core.module
+  protocol:
+    name: dubbo
+    port: -1
+    #host: 10.31.121.88
+  registry:
+    address: spring-cloud://192.168.2.156
+  application:
+    name: customer-marketing
+  cloud:
+    subscribed-services: 'xxl-job-admin'

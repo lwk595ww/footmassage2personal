@@ -1,0 +1,74 @@
+server:
+  port: 9003
+  servlet:
+    context-path: /footmassage2
+
+# nacos config 的 dataId 的命名规则是 ： ${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+# 如果没有 ${spring.profiles.active} 最后就为 ${spring.application.name}.${spring.cloud.nacos.config.file-extension}
+spring:
+  application:
+    name: footmassage2
+  profiles:
+    active: dev
+  config:
+    import: application-devmysql.yml,application-devrabbit.yml,application-devsentinel.yml,application-devseata.yml,application-devxxljob.properties,application-devdubbo.yml,application-prodmysql.yml,application-prodrabbit.yml,application-prodsentinel.yml,application-prodseata.yml,application-prodxxljob.properties,application-proddubbo.yml
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.0.41:8848
+        enabled: true
+        ip: 192.168.0.203
+      config:
+        server-addr: 192.168.0.41:8848
+        file-extension: yaml
+        group: DEFAULT_GROUP
+  main:
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  #active: prod  dev devmysql,devrabbit,devsentinel,devseata,devxxljob,devdubbo
+  # mongoDB prodmysql,prodrabbit,prodsentinel,prodseata,prodxxljob,proddubbo
+#  data:
+#    mongodb:
+#      database: lwk_test
+#      host: 192.168.0.41
+#      port: 20112
+
+
+
+
+logging:
+  level:
+    com.seetech.customerMarketing.core.dao: info
+
+
+# 配置 sentinel 对resttemplate 支持
+resttemplate:
+  sentinel:
+    enabled: true
+
+
+
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.seetech.footmassage2.core.entity
+  typeEnumsPackage: com.seetech.footmassage2.common.enumAll
+  global-config:
+    db-config:
+      id-type: assign_id
+  configuration:
+    cacheEnabled: true  #开启二级缓存
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+    aggressiveLazyLoading: false
+    lazyloadingenabled: true
+    mapUnderscoreToCamelCase: true
+
+
+
+
+

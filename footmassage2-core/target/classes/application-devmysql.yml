@@ -1,0 +1,33 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    dynamic:
+      primary: footmassage2
+      strict: true
+      seata: true #开启 mybatis-plus 对于seata支持 并且代理多数据源 这里开启后就必须关闭seata的自动代理
+      datasource:
+        footmassage2:
+          type: com.zaxxer.hikari.HikariDataSource
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://192.168.0.41:3306/footmassage2?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false
+          username: root
+          password: root
+          hikari:
+            pool-name: HikariCP
+            minimum-idle: 4
+            maximum-pool-size: 16
+            connection-timeout: 10000
+            idle-timeout: 300000
+            max-lifetime: 600000
+            auto-commit: true
+            connection-test-query: SELECT 1
+            connection-init-sql: SET NAMES utf8mb4
+      seata-mode: xa
+
+
+
+
+
+

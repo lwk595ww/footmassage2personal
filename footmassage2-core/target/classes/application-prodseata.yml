@@ -1,0 +1,30 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+#seata分布式事务配置
+seata:
+  application-id: seata-server #seata应用编号，默认为${spring.application.name} 服务名
+  tx-service-group: machine-after-sale-seata-service-group #seata事务组编号，用于TC集群名
+  service:
+    vgroup-mapping:
+      machine-after-sale-seata-service-group: default #虚拟组和分组的映射
+    grouplist:
+      default: 192.168.2.156:8091 #分组和seata服务的映射
+  config:
+    type: nacos
+    nacos:
+      namespace: 5a49bd7e-322c-4b08-bf29-8ef45b0309b1
+      server-addr: 192.168.2.156:8848
+      group: SEATA_GROUP
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 192.168.2.156:8848
+      namespace: 5a49bd7e-322c-4b08-bf29-8ef45b0309b1
+      group: SEATA_GROUP
+      cluster: default
+  client:
+    undo:
+      log-serialization: mySeataJackson #自定义json序列化
+  enable-auto-data-source-proxy: false # 关闭seata的自动代码数据源 交由 mybatis-plus来代理数据源

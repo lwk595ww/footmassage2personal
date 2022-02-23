@@ -1,0 +1,19 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+dubbo:
+  scan:
+    base-packages: com.seetech.footmassage2.core.module
+  protocol:
+    name: dubbo
+    port: -1
+    #host: 192.168.0.177
+    host: 192.168.0.203
+    #host: 192.168.0.100
+  registry:
+    address: spring-cloud://192.168.0.41
+  application:
+    name: footmassage2
+  cloud:
+    subscribed-services: 'xxl-job-admin,leaf-xr,xxl-job-admin_test,machine-after-sale'
